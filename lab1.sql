@@ -102,8 +102,11 @@ FROM REZERWACJE r
 where w.DATA - CURRENT_DATE <= 7
   and r.STATUS = 'N';
 
-select * from rezerwacje_do_anulowania;
+select *
+from rezerwacje_do_anulowania;
 
-
-
-
+create procedure uczestnicy_wycieczki(ID_WYCIECZKI IN NUMBER(*))
+    IS
+BEGIN
+    select * FROM WYCIECZKI_OSOBY where WYCIECZKI_OSOBY.ID_WYCIECZKI = ID_WYCIECZKI;
+end;
