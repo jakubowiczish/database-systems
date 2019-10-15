@@ -1,5 +1,6 @@
 CREATE OR REPLACE VIEW WYCIECZKI_MIEJSCA AS
-SELECT w.NAZWA,
+SELECT w.ID_WYCIECZKI,
+       w.NAZWA,
        w.KRAJ,
        w.DATA,
        w.LICZBA_MIEJSC,
@@ -8,4 +9,4 @@ SELECT w.NAZWA,
               FROM REZERWACJE
               WHERE REZERWACJE.ID_WYCIECZKI = w.ID_WYCIECZKI
                 AND status <> 'A') AS liczba_wolnych_miejsc
-FROM WYCIECZKI w;
+FROM WYCIECZKI w
