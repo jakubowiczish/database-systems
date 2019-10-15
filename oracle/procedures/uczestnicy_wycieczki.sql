@@ -6,7 +6,7 @@ BEGIN
     SELECT COUNT(*) INTO ilosc_wycieczek FROM WYCIECZKI w WHERE w.ID_WYCIECZKI = id_wycieczki_param;
 
     IF ilosc_wycieczek = 0 THEN
-        raise_application_error(-23333, 'Nie znaleziono wycieczki o podanym id');
+        raise_application_error(-20006, 'Nie znaleziono wycieczki o podanym id');
     END IF;
 
     SELECT osoby_wycieczki_type(o.IMIE, o.NAZWISKO, w.NAZWA, w.DATA, w.KRAJ, r.STATUS)

@@ -6,7 +6,7 @@ BEGIN
     SELECT COUNT(*) INTO ilosc_wycieczek FROM OSOBY o WHERE o.ID_OSOBY = id_osoby_param;
 
     IF ilosc_wycieczek = 0 THEN
-        raise_application_error(-23334, 'Nie znaleziono osoby o podanym id');
+        raise_application_error(-20003, 'Nie znaleziono osoby o podanym id');
     END IF;
 
     SELECT osoby_wycieczki_type(o.IMIE, o.NAZWISKO, w.NAZWA, w.DATA, w.KRAJ, r.STATUS)
