@@ -1,7 +1,7 @@
 CREATE OR REPLACE FUNCTION rezerwacje_osoby(id_osoby_param NUMBER)
-    RETURN osoby_wycieczki_table as
+    RETURN osoby_wycieczki_table AS
     result_table    osoby_wycieczki_table;
-    ilosc_wycieczek integer;
+    ilosc_wycieczek INTEGER;
 BEGIN
     SELECT COUNT(*) INTO ilosc_wycieczek FROM OSOBY o WHERE o.ID_OSOBY = id_osoby_param;
 

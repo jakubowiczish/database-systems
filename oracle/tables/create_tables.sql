@@ -5,11 +5,7 @@ CREATE TABLE OSOBY
     NAZWISKO VARCHAR2(50),
     PESEL    VARCHAR2(11),
     KONTAKT  VARCHAR2(100),
-    CONSTRAINT OSOBY_PK PRIMARY KEY
-        (
-         ID_OSOBY
-            )
-        ENABLE
+    CONSTRAINT OSOBY_PK PRIMARY KEY (ID_OSOBY) ENABLE
 );
 
 
@@ -21,11 +17,7 @@ CREATE TABLE WYCIECZKI
     DATA          DATE,
     OPIS          VARCHAR2(200),
     LICZBA_MIEJSC INT,
-    CONSTRAINT WYCIECZKI_PK PRIMARY KEY
-        (
-         ID_WYCIECZKI
-            )
-        ENABLE
+    CONSTRAINT WYCIECZKI_PK PRIMARY KEY (ID_WYCIECZKI) ENABLE
 );
 
 
@@ -35,42 +27,22 @@ CREATE TABLE REZERWACJE
     ID_WYCIECZKI  INT,
     ID_OSOBY      INT,
     STATUS        CHAR(1),
-    CONSTRAINT REZERWACJE_PK PRIMARY KEY
-        (
-         NR_REZERWACJI
-            )
-        ENABLE
+    CONSTRAINT REZERWACJE_PK PRIMARY KEY (NR_REZERWACJI) ENABLE
 );
 
 
 ALTER TABLE REZERWACJE
-    ADD CONSTRAINT REZERWACJE_FK1 FOREIGN KEY
-        (
-         ID_OSOBY
-            )
-        REFERENCES OSOBY
-            (
-             ID_OSOBY
-                )
-            ENABLE;
+    ADD CONSTRAINT REZERWACJE_FK1
+        FOREIGN KEY (ID_OSOBY)
+            REFERENCES OSOBY (ID_OSOBY)
+                ENABLE;
 
 ALTER TABLE REZERWACJE
-    ADD CONSTRAINT REZERWACJE_FK2 FOREIGN KEY
-        (
-         ID_WYCIECZKI
-            )
-        REFERENCES WYCIECZKI
-            (
-             ID_WYCIECZKI
-                )
-            ENABLE;
+    ADD CONSTRAINT REZERWACJE_FK2
+        FOREIGN KEY (ID_WYCIECZKI)
+            REFERENCES WYCIECZKI (ID_WYCIECZKI)
+                ENABLE;
 
 ALTER TABLE REZERWACJE
     ADD CONSTRAINT REZERWACJE_CHK1 CHECK
-        (status IN ('N', 'P', 'Z', 'A'))
-        ENABLE;
-
-
-
-
-
+        (status IN ('N', 'P', 'Z', 'A')) ENABLE;
