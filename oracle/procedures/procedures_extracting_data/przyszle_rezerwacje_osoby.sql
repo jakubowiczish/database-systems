@@ -1,9 +1,12 @@
 CREATE OR REPLACE FUNCTION przyszle_rezerwacje_osoby(id_osoby_param NUMBER)
-    RETURN osoby_wycieczki_table as
+    RETURN osoby_wycieczki_table AS
     result_table    osoby_wycieczki_table;
-    ilosc_wycieczek integer;
+    ilosc_wycieczek INTEGER;
 BEGIN
-    SELECT COUNT(*) INTO ilosc_wycieczek FROM OSOBY o WHERE o.ID_OSOBY = id_osoby_param;
+    SELECT COUNT(*)
+    INTO ilosc_wycieczek
+    FROM OSOBY o
+    WHERE o.ID_OSOBY = id_osoby_param;
 
     IF ilosc_wycieczek = 0 THEN
         raise_application_error(-20001, 'Nie znaleziono osoby o podanym id');

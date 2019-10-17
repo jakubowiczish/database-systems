@@ -3,7 +3,10 @@ CREATE OR REPLACE FUNCTION uczestnicy_wycieczki(id_wycieczki_param INT)
     result_table    osoby_wycieczki_table;
     ilosc_wycieczek INTEGER;
 BEGIN
-    SELECT COUNT(*) INTO ilosc_wycieczek FROM WYCIECZKI w WHERE w.ID_WYCIECZKI = id_wycieczki_param;
+    SELECT COUNT(*)
+    INTO ilosc_wycieczek
+    FROM WYCIECZKI w
+    WHERE w.ID_WYCIECZKI = id_wycieczki_param;
 
     IF ilosc_wycieczek = 0 THEN
         raise_application_error(-20006, 'Nie znaleziono wycieczki o podanym id');
