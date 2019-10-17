@@ -6,3 +6,9 @@ SELECT * FROM dostepne_wycieczki_function('POLSKA', CURRENT_DATE, CURRENT_DATE +
 BEGIN
     dodaj_rezerwacje(8, 41);
 END;
+
+select UCZESTNICY_WYCIECZKI(7) from dual;
+
+select REZERWACJE_OSOBY(23) from dual;
+
+select PRZYSZLE_REZERWACJE_OSOBY(24) from dual;
