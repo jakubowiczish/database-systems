@@ -20,3 +20,7 @@ end;
 begin
     ZMIEN_LICZBE_MIEJSC(7, 10);
 end;
+
+begin
+    DODAJ_REZERWACJE2(41, 23);
+end;

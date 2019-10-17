@@ -17,7 +17,7 @@ BEGIN
     WHERE wm.ID_WYCIECZKI = id_wycieczki_param;
 
     IF liczba_nowych_miejsc_param < counter OR liczba_nowych_miejsc_param < 0 THEN
-        raise_application_error(-20030, 'Podana liczba nowych miejsc ma zbyt małą wartość');
+        raise_application_error(-20030, 'Podana liczba nowych miejsc ma zbyt mala wartosc');
     END IF;
 
     UPDATE WYCIECZKI

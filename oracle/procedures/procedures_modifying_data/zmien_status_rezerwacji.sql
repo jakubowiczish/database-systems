@@ -10,7 +10,7 @@ BEGIN
 
     IF counter = 0 THEN
         raise_application_error(-20015,
-                                'Nie można zmienić statusu rezerwacji dla wycieczek, które nie są w przyszłości');
+                                'Nie mozna zmienic statusu rezerwacji dla wycieczek, ktore nie sa w przyszlosci');
     END IF;
 
     SELECT COUNT(*)
@@ -44,14 +44,14 @@ BEGIN
 
                 IF counter = 0 THEN
                     raise_application_error(-20018,
-                                            'Nie ma wystarczającej ilości miejsc, aby przywrócić anulowaną rezerwację o podanym id');
+                                            'Nie ma wystarczajacej ilosci miejsc, aby przywrocic anulowana rezerwacje o podanym id');
                 END IF;
 
         WHEN new_status = 'N'
             THEN raise_application_error(-20017,
-                                         'Rezerwacja, która już istnieje nie może zmienić statusu na nową. Podano błędny argument');
+                                         'Rezerwacja, ktora juz istnieje nie moze zmienic statusu na nowa. Podano bledny argument');
 
-        ELSE raise_application_error(-20018, 'Wystąpił nieznany błąd');
+        ELSE raise_application_error(-20018, 'Wystapil nieznany blad');
         END CASE;
 
     UPDATE REZERWACJE

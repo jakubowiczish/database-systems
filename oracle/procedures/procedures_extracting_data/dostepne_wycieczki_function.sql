@@ -1,10 +1,10 @@
-CREATE OR REPLACE FUNCTION dostepne_wycieczki_function(kraj_param varchar2, data_od date, data_do date)
+CREATE OR REPLACE FUNCTION dostepne_wycieczki_function(kraj_param VARCHAR2, data_od DATE, data_do DATE)
     RETURN wycieczki_table AS
     result_table wycieczki_table;
 BEGIN
     IF data_do < data_od THEN
         raise_application_error(-20020,
-                                'Niepoprawny przedział czasu - data z parametru data_do jest wcześniej niż data_od');
+                                'Niepoprawny przedzial czasu - data z parametru data_do jest wczesniej niz data_od');
     END IF;
 
     SELECT wycieczki_type(w.ID_WYCIECZKI, w.NAZWA, w.KRAJ, w.OPIS, w.LICZBA_MIEJSC, w.DATA)
