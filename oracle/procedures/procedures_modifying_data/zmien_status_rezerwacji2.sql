@@ -1,6 +1,7 @@
-CREATE OR REPLACE PROCEDURE zmien_status_rezerwacji(id_rezerwacji_param NUMBER, new_status CHAR) AS
+CREATE OR REPLACE PROCEDURE zmien_status_rezerwacji2(id_rezerwacji_param NUMBER, new_status CHAR) AS
     old_status CHAR(1);
     counter    INTEGER;
+    difference_of_places_available INTEGER;
 BEGIN
     SELECT COUNT(*)
     INTO counter
@@ -51,10 +52,25 @@ BEGIN
             THEN raise_application_error(-20017,
                                          'Rezerwacja, ktora juz istnieje nie moze zmienic statusu na nowa. Podano bledny argument');
 
-        ELSE NULL;
+        ELSE
+            IF new_status = 'A'
+            THEN
+                difference_of_places_available := 1;
+            ELSE
+                difference_of_places_available := 0;
+            END IF;
         END CASE;
 
     UPDATE REZERWACJE
     SET STATUS = new_status
     WHERE NR_REZERWACJI = id_rezerwacji_param;
+
+    UPDATE WYCIECZKI w
+    SET LICZBA_WOLNYCH_MIEJSC = LICZBA_WOLNYCH_MIEJSC + difference_of_places_available
+    WHERE w.ID_WYCIECZKI = (SELECT ID_WYCIECZKI
+                            FROM REZERWACJE r
+                            WHERE r.NR_REZERWACJI = id_rezerwacji_param);
+
+    INSERT INTO REZERWACJE_LOG (ID_REZERWACJI, DATA, STATUS)
+    VALUES (id_rezerwacji, CURRENT_DATE, new_status);
 END;
