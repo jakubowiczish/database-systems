@@ -1,0 +1,30 @@
+create schema APP;
+
+create table PRODUCTS
+(
+	PRODUCTID INTEGER not null
+		primary key,
+	PRODUCTNAME VARCHAR(255),
+	UNITSONSTOCK INTEGER not null
+);
+
+create table SUPPLIERS
+(
+	SUPPLIERID INTEGER not null
+		primary key,
+	CITY VARCHAR(255),
+	COMPANYNAME VARCHAR(255),
+	STREET VARCHAR(255)
+);
+
+create table PRODUCTSUPPLIER
+(
+	SUPPLIERID INTEGER not null
+		constraint FKHVXVPX6PJND3K0VD8TEG53M0S
+			references SUPPLIERS,
+	PRODUCTID INTEGER not null
+		constraint FKSYI1HWRQIKCD1IS3N7V9F2J5A
+			references PRODUCTS,
+	primary key (SUPPLIERID, PRODUCTID)
+);
+
