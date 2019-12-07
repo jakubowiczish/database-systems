@@ -1,0 +1,1 @@
+function findTipsWithPhrase(phrase) {    return db.Tip.find({text: new RegExp(phrase)})}findTipsWithPhrase("Great");

@@ -1,0 +1,1 @@
+function addTip(user_id, text, business_id) {    db.Tip.insert({        user_id: user_id,        text: text,        business_id: business_id,        likes: 0,        date: ISODate(),        type: "tip"    });}addTip("MHT5ruxcyEDUfPQ8L8tZCw", "example_text", "_wZTYYL7cutanzAnJUTGMA");

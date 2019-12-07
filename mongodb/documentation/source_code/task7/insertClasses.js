@@ -1,0 +1,1 @@
+db.Classes.insert({    "class_number": "4.27",    "building_number": "D17",    "capacity": 32,    "subject_ids": ["DB", "TO", "TOIZO"]});

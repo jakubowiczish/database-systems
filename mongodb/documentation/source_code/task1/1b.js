@@ -1,0 +1,1 @@
+db.Review.find({    date: {        $gte: "2011-01-01",        $lte: "2012-12-31"    }}).count();

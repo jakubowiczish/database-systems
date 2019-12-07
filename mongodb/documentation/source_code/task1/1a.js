@@ -1,0 +1,1 @@
+db.Business.distinct("city");

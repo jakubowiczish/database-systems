@@ -1,0 +1,1 @@
+db.Students.insert({    "student_id": "239298232",    "first_name": "Jakub",    "last_name": "Plotnikowski",    "birthdate": "12-12-1998",    "birthplace": "Olkusz",    "address": {        "city": "Krakow",        "street": "Budryka",        "postal_code": "30-072"    },    "subject_ids": ["DB", "TOIZO"]});
