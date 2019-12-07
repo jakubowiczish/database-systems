@@ -1,0 +1,239 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi)
+\usepackage{fullpage} % changes the margin
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[polish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{ragged2e}
+\usepackage{graphicx}
+\usepackage{datatool}
+\usepackage{rotating}
+\usepackage{placeins}
+\usepackage{pdflscape}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor} % for setting colors
+
+\usepackage{color}
+
+\usepackage{hyperref}
+\hypersetup{
+colorlinks,
+citecolor=black,
+filecolor=black,
+linkcolor=black,
+urlcolor=black
+}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+
+\lstset{frame=tb,
+language=SQL,
+aboveskip=3mm,
+belowskip=3mm,
+showstringspaces=false,
+columns=flexible,
+basicstyle={\small\ttfamily},
+numbers=none,
+numberstyle=\tiny\color{gray},
+keywordstyle=\color[HTML]{EA1212},
+commentstyle=\color{dkgreen},
+stringstyle=\color{blue},
+breaklines=true,
+breakatwhitespace=true,
+tabsize=3,
+otherkeywords={IF, RETURN, IS, BULK, COLLECT, REPLACE, FUNCTION, PROCEDURE, OF, TYPE},
+morekeywords={IF, RETURN, IS, BULK, COLLECT, REPLACE, FUNCTION, PROCEDURE, OF, TYPE}
+}
+
+
+\title{Raport z wykonania ćwiczenia Oracle PL/SQL}
+\author{Jakub Płotnikowski}
+\date{Październik 2019r.}
+
+\begin{document}
+
+    \maketitle
+    \tableofcontents
+
+
+    \newpage
+
+    \section{Tabele - dane podane na początku w skrypcie}
+    \begin{flushleft}
+        Wykaz tabel w bazie danych.
+    \end{flushleft}
+
+    \subsection{Definicje tabel oraz początkowych warunków integralnościowych}
+    \lstinputlisting{tables/create_tables.sql}
+
+    \newpage
+
+    \section{Widoki}
+
+    \subsection{Widok WYCIECZKI\_OSOBY}
+    \lstinputlisting{views/wycieczki_osoby.sql}
+
+    \subsection{Widok WYCIECZKI\_OSOBY\_POTWIERDZONE}
+    \lstinputlisting{views/wycieczki_osoby_potwierdzone.sql}
+
+    \subsection{Widok WYCIECZKI\_OSOBY\_PRZYSZLE}
+    \lstinputlisting{views/wycieczki_przyszle.sql}
+
+    \newpage
+
+    \subsection{Widok WYCIECZKI\_MIEJSCA}
+    \lstinputlisting{views/wycieczki_miejsca.sql}
+
+    \subsection{Widok DOSTEPNE\_WYCIECZKI}
+    \lstinputlisting{views/dostepne_wycieczki_view.sql}
+
+    \subsection{Widok REZERWACJE\_DO\_ANULOWANIA}
+    \lstinputlisting{views/rezerwacje_do_anulowania.sql}
+
+    \newpage
+
+
+    \section{Funkcje pobierające dane}
+
+    \subsection{Definicje typów użytych przy funkcjach}
+    \lstinputlisting{procedures/type_definitions.sql}
+
+    \newpage
+
+    \subsection{Funkcja UCZESTNICY\_WYCIECZKI}
+    \lstinputlisting{procedures/procedures_extracting_data/uczestnicy_wycieczki.sql}
+
+    \newpage
+
+    \subsection{Funkcja REZERWACJE\_OSOBY}
+    \lstinputlisting{procedures/procedures_extracting_data/rezerwacje_osoby.sql}
+
+    \newpage
+
+    \subsection{Funkcja PRZYSZLE\_REZERWACJE\_OSOBY}
+    \lstinputlisting{procedures/procedures_extracting_data/przyszle_rezerwacje_osoby.sql}
+
+    \newpage
+
+    \subsection{Funkcja DOSTEPNE\_WYCIECZKI}
+    \lstinputlisting{procedures/procedures_extracting_data/dostepne_wycieczki_function.sql}
+
+    \newpage
+
+    \section{Funkcje modyfikujące dane - wersje pierwsze}
+
+    \subsection{Funkcja DODAJ\_REZERWACJE}
+    \lstinputlisting{procedures/procedures_modifying_data/dodaj_rezerwacje.sql}
+
+    \newpage
+
+    \subsection{Funkcja ZMIEN\_STATUS\_REZERWACJI}
+    \lstinputlisting{procedures/procedures_modifying_data/zmien_status_rezerwacji.sql}
+
+    \newpage
+
+    \subsection{Funkcja ZMIEN\_LICZBE\_MIEJSC}
+    \lstinputlisting{procedures/procedures_modifying_data/zmien_liczbe_miejsc.sql}
+
+    \newpage
+
+
+    \section{Definicja tabeli dziennikującej}
+
+    \subsection{Tabela REZERWACJE\_LOG}
+    \lstinputlisting{tables/create_rezerwacje_log.sql}
+
+    \newpage
+
+
+    \section{Widoki z użyciem dodanej kolumny \newline LICZBA\_WOLNYCH\_MIEJSC
+    w tabeli WYCIECZKI}
+
+    \subsection{Widok DOSTEPNE\_WYCIECZKI2}
+    \lstinputlisting{views/dostepne_wycieczki_view2.sql}
+
+
+    \subsection{Widok WYCIECZKI\_MIEJSCA2}
+    \lstinputlisting{views/wycieczki_miejsca2.sql}
+
+
+    \section{Procedura przelicz}
+    \lstinputlisting{procedures/przelicz.sql}
+
+    \newpage
+
+    \section{Funkcje pobierające dane z użyciem dodanej kolumny
+    \newline LICZBA\_WOLNYCH\_MIEJSC}
+
+    \subsection{Funkcja DOSTEPNE\_WYCIECZKI2}
+    \lstinputlisting{procedures/procedures_extracting_data/dostepne_wycieczki_function2.sql}
+
+    \newpage
+
+
+    \section{Funkcje modyfikujące dane z użyciem tabeli dziennikującej oraz z dodaną kolumną LICZBA\_WOLNYCH\_MIEJSC w tabeli WYCIECZKI}
+
+    \subsection{Wyszukanie sekwencji dla poszczególnych obiektów}
+    \lstinputlisting{others/sequences.sql}
+
+    Sekwencja dla PK tabeli REZERWACJE jest u mnie w bazie nastepująca:
+
+    \begin{lstlisting}[language={}, caption={}]
+        "ISEQ$$_79074"
+    \end{lstlisting}
+
+
+    \subsection{Funkcja DODAJ\_REZERWACJE2}
+    \lstinputlisting{procedures/procedures_modifying_data/dodaj_rezerwacje2.sql}
+
+    \newpage
+
+    \subsection{Funkcja ZMIEN\_STATUS\_REZERWACJI2}
+    \lstinputlisting{procedures/procedures_modifying_data/zmien_status_rezerwacji2.sql}
+
+    \newpage
+
+    \subsection{Funkcja ZMIEN\_LICZBE\_MIEJSC2}
+    \lstinputlisting{procedures/procedures_modifying_data/zmien_liczbe_miejsc2.sql}
+
+    \newpage
+
+    \section{Triggery}
+
+    \subsection{Trigger obsługujący dodanie rezerwacji - DODAJ\_NOWA\_REZERWACJE}
+    \lstinputlisting{triggers/dodaj_nowa_rezerwacje_trigger.sql}
+
+    \subsection{Trigger obsługujący zmiane statusu - ZMIEN\_STATUS}
+    \lstinputlisting{triggers/zmien_status_trigger.sql}
+
+    \newpage
+
+    \subsection{Trigger zabraniający usunięcia rezerwacji - USUN\_REZERWACJE}
+    \lstinputlisting{triggers/usun_rezerwacje_trigger.sql}
+
+    \subsection{Trigger obsługujący zmianę liczby miejsc
+    \newline na poziomie wycieczki - ZMIEN\_LICZBE\_MIEJSC}
+    \lstinputlisting{triggers/zmien_liczbe_miejsc_trigger.sql}
+
+
+    \section{Uaktualnione procedury modyfikujące dane po dodaniu triggerów}
+
+    \subsection{Funkcja DODAJ\_REZERWACJE3}
+    \lstinputlisting{procedures/procedures_modifying_data/dodaj_rezerwacje3.sql}
+
+    \newpage
+
+    \subsection{Funkcja ZMIEN\_STATUS\_REZERWACJI3}
+    \lstinputlisting{procedures/procedures_modifying_data/zmien_status_rezerwacji3.sql}
+
+    \newpage
+
+    \subsection{Funkcja ZMIEN\_LICZBE\_MIEJSC3}
+    \lstinputlisting{procedures/procedures_modifying_data/zmien_liczbe_miejsc3.sql}
+
+\end{document}
