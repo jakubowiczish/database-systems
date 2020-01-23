@@ -1,0 +1,126 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
+\usepackage{fullpage} % changes the margin
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[polish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{ragged2e}
+\usepackage{graphicx}
+\usepackage{datatool}
+\usepackage{rotating}
+\usepackage{placeins}
+\usepackage{pdflscape}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor} % for setting colors
+
+\usepackage{color}
+
+\usepackage{hyperref}
+\hypersetup{
+colorlinks,
+citecolor=black,
+filecolor=black,
+linkcolor=black,
+urlcolor=black
+}
+
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstset{
+   language=JavaScript,
+   backgroundcolor=\color{white},
+   extendedchars=true,
+   basicstyle=\footnotesize\ttfamily,
+   showstringspaces=false,
+   showspaces=false,
+   numbers=left,
+   numberstyle=\footnotesize,
+   numbersep=9pt,
+   tabsize=2,
+   breaklines=true,
+   showtabs=false,
+   captionpos=b
+}
+
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\title{Raport z wykonania ćwiczenia REST, Mikroserwisy}
+\author{Jakub Płotnikowski}
+\date{Styczeń 2020}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+ \newpage 
+
+\section{Kod z zadań 1, 2, 3}
+
+Jako, że zadania 1, 2 oraz 3 wykonałem oraz oddałem na zajęciach, wklejam tylko ich kod bez dodatkowego omówienia.
+
+ \subsection{Zadanie 1}
+ \lstinputlisting{source_code/01/app.js}
+ 
+  \newpage 
+
+ \subsection{Zadanie 2}
+ \lstinputlisting{source_code/02/app.js}
+ 
+  \newpage 
+
+ \subsection{Zadanie 3}
+ \lstinputlisting{source_code/03/app.js}
+ 
+ \newpage 
+ 
+ \section{Zadanie 4}
+ 
+ \subsection{Treść zadania}
+ Wyprowadzić i przeanalizować wynik metody GET dla bazowego URLa.
+Zaobserwować rezultaty dla URLa zawierającego numer (id) pacjenta w zależności od użytej metody HTTP.
+   Dla testowania wygodnie jest użyć wywołania curl -X
+   Przeanalizować różnice w logice poszczególnych implementacji kodu dla obsługi tych metod.
+Uwaga: Zwrócić uwagę na fragment kodu pomiędzy db i średnikiem, który odwołuje się do kodu pakietu lowdb, zainicjowanego na początku.
+Zamieścić w raporcie przykładowe wyniki (i komentarz do nich).
+ 
+ \subsection{Pobranie listy pacjentów}
+ \lstinputlisting{source_code/04/get_patients_empty.js}
+ 
+ \subsection{Dodanie przykładowego pacjenta}
+ \lstinputlisting{source_code/04/add_item.js}
+ 
+ \subsection{Zmiana imienia i nazwiska pacjenta}
+ \lstinputlisting{source_code/04/change_item.js}
+
+ \subsection{Ponowne pobranie listy pacjentów}
+ \lstinputlisting{source_code/04/get_patients_empty.js}
+
+ \subsection{Usunięcie pacjenta o id równym 1}
+ \lstinputlisting{source_code/04/delete_patient.js}
+
+ \subsection{Ponowne pobranie listy pacjentów}
+ \lstinputlisting{source_code/04/get_patients_empty.js}
+\end{document}
