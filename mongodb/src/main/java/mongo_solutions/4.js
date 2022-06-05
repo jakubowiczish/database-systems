@@ -1,1 +1,0 @@
-function updateBusiness(id, new_business_name) {    db.Business.update(        {_id: id},        {$set: {name: new_business_name}}    )}updateBusiness(ObjectId("5de179c60a9d6565bd4de970"), "Wild Birds Limited");

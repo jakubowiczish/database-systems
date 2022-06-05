@@ -1,1 +1,0 @@
-db.Subjects.insert({    "subject_id": "DB",    "name": "Bazy Danych",    "students_ids": ["239298232", "239298233"],    "time": {        "day_of_week": "Friday",        "start_time": "11:15",        "end_time": "12:45"    },    "lecturer": "Robert Marcjan"});
